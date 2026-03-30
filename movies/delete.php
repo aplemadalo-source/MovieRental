@@ -1,6 +1,7 @@
 <?php
 include '../connect.php';
 
+ 
 // Check if movie ID is provided
 if (!isset($_GET['id'])) {
     die("Movie ID not specified.");

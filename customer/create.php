@@ -26,9 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+    <center>
 <head>
     <meta charset="UTF-8">
     <title>Add Customer</title>
+    <link rel="stylesheet" href="create.css">
 </head>
 <body>
 <h1>Add New Customer</h1>
@@ -44,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <label>Phone:</label><br>
     <input type="text" name="phone"><br><br>
 
-    <label>Customer Type:</label><br>
+    <label class="form-label">Customer Type:</label><br>
     <select name="customer_type" required>
         <option value="walk-in">Walk-in</option>
         <option value="online">Online</option>
@@ -52,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Add Customer</button>
 </form>
+</center>
+<p><a href="read.php" class="back-link">View All Customers</a></p>
 
-<p><a href="read.php">View All Customers</a></p>
 </body>
 </html>

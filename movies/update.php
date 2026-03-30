@@ -51,12 +51,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <title>Edit Movie</title>
+    <link rel="stylesheet" href="update.css">
+
+ <center>
 </head>
 <body>
     <h1>Edit Movie</h1>
-    <p><a href="read.php">Back to All Movies</a></p>
+    <p><a href="read.php" class="back-link">Back to All Movies</a></p>
 
     <?php if($message) { echo "<p>$message</p>"; } ?>
 
@@ -77,6 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="number" name="rental_price" step="0.01" value="<?= $movie['rental_price'] ?>" required><br><br>
 
         <button type="submit">Update Movie</button>
+        
     </form>
 </body>
+</center>   
 </html>

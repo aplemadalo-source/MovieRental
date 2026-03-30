@@ -5,12 +5,14 @@ include '../connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <title>All Customers</title>
+    <link rel="stylesheet" href="read.css">
 </head>
 <body>
 <h1>All Customers</h1>
-<p><a href="create.php">Add New Customer</a></p>
+<p><a class="add-new" href="create.php">Add New Customer</a></p>
 
 <table border="1" cellpadding="10">
     <tr>

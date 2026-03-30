@@ -35,9 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="create.css">
     <title>Add Movie</title>
+
 </head>
 <body>
+    <center>
     <h1>Add New Movie</h1>
 
     <?php if($message) { echo "<p>$message</p>"; } ?>
@@ -61,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Add Movie</button>
     </form>
 
-    <p><a href="read.php">View All Movies</a></p>
+    <p><a href="read.php" class="link1">View All Movies</a></p>
+    </center>
 </body>
 </html>

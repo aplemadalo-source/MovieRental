@@ -39,12 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <title>Edit Customer</title>
+    <link rel="stylesheet" href="update.css">
 </head>
+<center>
 <body>
 <h1>Edit Customer</h1>
-<p><a href="read.php">Back to All Customers</a></p>
+<p><a class="back-link" href="read.php">Back to All Customers</a></p>
 
 <?php if($message) echo "<p>$message</p>"; ?>
 
@@ -66,5 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Update Customer</button>
 </form>
+</center>
 </body>
 </html>
