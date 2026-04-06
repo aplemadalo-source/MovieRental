@@ -12,17 +12,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $release_year = $_POST['release_year'];
     $stock = $_POST['stock'];
     $rental_price = $_POST['rental_price'];
+    $image = $_FILES['image']['name'];
 
     // Simple validation
     if (empty($title) || empty($genre) || empty($release_year) || empty($stock) || empty($rental_price)) {
         $message = "All fields are required!";
     } else {
         // Insert into database
-        $stmt = $conn->prepare("INSERT INTO movies (title, genre, release_year, stock, rental_price) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssiii", $title, $genre, $release_year, $stock, $rental_price);
+        $stmt = $conn->prepare("INSERT INTO movies (title, genre, release_year, stock, rental_price, image) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiiis", $title, $genre, $release_year, $stock, $rental_price, $image);
 
         if ($stmt->execute()) {
-            $message = "Movie added successfully ✅";
+            $message = "Movie added successfully ";
         } else {
             $message = "Error: " . $stmt->error;
         }
@@ -35,8 +36,207 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="create.css">
-    <title>Add Movie</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('create.css')}}">
+    <title>Add Movie</title>.
+
+    <style>
+        /* Google Font (optional if you include in HTML) */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+  background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+  color: #fff;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #222;
+}
+
+header h1 {
+  color: #e50914;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #ccc;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), transparent),
+              url('hero.jpg') center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero h2 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #bbb;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.hero button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  background: #e50914;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background: #ff1e2d;
+  transform: scale(1.05);
+}
+
+/* Section */
+.movies {
+  padding: 50px;
+}
+
+.movies h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+/* Grid */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Movie Card */
+.movie-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  transition: 0.4s ease;
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4);
+}
+
+/* Poster */
+.movie-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+/* Overlay Effect */
+.movie-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.movie-card:hover::after {
+  opacity: 1;
+}
+
+/* Info */
+.movie-info {
+  padding: 15px;
+}
+
+.movie-info h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.movie-info p {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Button */
+.rent-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: #e50914;
+  color: white;
+  font-size: 13px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.rent-btn:hover {
+  background: #ff1e2d;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #111;
+  margin-top: 50px;
+  border-top: 1px solid #222;
+}
+
+footer p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e50914;
+  border-radius: 10px;
+}
+    </style>
 
 </head>
 <body>
@@ -45,7 +245,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if($message) { echo "<p>$message</p>"; } ?>
 
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <label>Title:</label><br>
         <input type="text" name="title" required><br><br>
 
@@ -60,6 +260,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label>Rental Price:</label><br>
         <input type="number" name="rental_price" step="0.01" required><br><br>
+
+        <label>Image:</label><br>
+        <input type="file" name="image" accept="image/*" required><br><br>
 
         <button type="submit">Add Movie</button>
     </form>

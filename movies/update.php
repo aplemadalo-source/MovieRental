@@ -29,9 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $release_year = $_POST['release_year'];
     $stock = $_POST['stock'];
     $rental_price = $_POST['rental_price'];
+    $image = $_FILES['image']['name'];
 
-    $stmt = $conn->prepare("UPDATE movies SET title=?, genre=?, release_year=?, stock=?, rental_price=? WHERE movie_id=?");
-    $stmt->bind_param("ssiiii", $title, $genre, $release_year, $stock, $rental_price, $id);
+    $stmt = $conn->prepare("UPDATE movies SET title=?, genre=?, release_year=?, stock=?, rental_price=?, image=? WHERE movie_id=?");
+    $stmt->bind_param("ssiiisi", $title, $genre, $release_year, $stock, $rental_price, $image, $id);
 
     if ($stmt->execute()) {
         $message = "Movie updated successfully ✅";
@@ -41,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $movie['release_year'] = $release_year;
         $movie['stock'] = $stock;
         $movie['rental_price'] = $rental_price;
+        $movie['image'] = $image;
     } else {
         $message = "Error: " . $stmt->error;
     }
@@ -64,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if($message) { echo "<p>$message</p>"; } ?>
 
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <label>Title:</label><br>
         <input type="text" name="title" value="<?= htmlspecialchars($movie['title']) ?>" required><br><br>
 
@@ -80,8 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Rental Price:</label><br>
         <input type="number" name="rental_price" step="0.01" value="<?= $movie['rental_price'] ?>" required><br><br>
 
+        <label>Image:</label><br>
+        <input type="file" name="image" accept="image/*"><br><br>
+
         <button type="submit">Update Movie</button>
-        
+
     </form>
 </body>
 </center>   
