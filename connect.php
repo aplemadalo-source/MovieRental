@@ -1,13 +1,10 @@
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "movierental";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli("localhost", "root", "", "movierental");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
- 

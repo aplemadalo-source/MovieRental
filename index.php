@@ -2,14 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Movie Rental Dashboard</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="index.css">
 </head>
+    <link rel="stylesheet" href="style.css">
 <body>
-
+    
 <div class="container">
 
     <h1>🎬 Movie Rental System</h1>

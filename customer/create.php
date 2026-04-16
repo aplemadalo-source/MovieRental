@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $name, $email, $phone, $customer_type);
 
         if ($stmt->execute()) {
-            $message = "Customer added successfully ✅";
+            header("Location: read.php");
+            exit;
         } else {
             $message = "Error: " . $stmt->error;
         }
@@ -25,37 +26,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <center>
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Add Customer</title>
-    <link rel="stylesheet" href="create.css">
 </head>
+    <link rel="stylesheet" href="style.css">
 <body>
-<h1>Add New Customer</h1>
+
+<h1>Add Customer</h1>
 <?php if($message) echo "<p>$message</p>"; ?>
 
-<form method="POST" action="">
-    <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+<form method="POST">
+    Name: <input type="text" name="name" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    Phone: <input type="text" name="phone"><br><br>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
-
-    <label>Phone:</label><br>
-    <input type="text" name="phone"><br><br>
-
-    <label class="form-label">Customer Type:</label><br>
-    <select name="customer_type" required>
+    Type:
+    <select name="customer_type">
         <option value="walk-in">Walk-in</option>
         <option value="online">Online</option>
     </select><br><br>
 
-    <button type="submit">Add Customer</button>
+    <button type="submit">Add</button>
 </form>
-</center>
-<p><a href="read.php" class="back-link">View All Customers</a></p>
+
+<a href="read.php">View Customers</a>
 
 </body>
 </html>

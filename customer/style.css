@@ -1,0 +1,109 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== HEADER ===== */
+h1 {
+    text-align: center;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+/* ===== BUTTONS ===== */
+a, button {
+    display: inline-block;
+    background: linear-gradient(135deg, #4a90e2, #007bff);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+a:hover, button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,123,255,0.3);
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+table th {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+}
+
+table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+    background: #f1f6ff;
+}
+
+/* ===== FORM ===== */
+form {
+    margin-top: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* ===== LINKS ===== */
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== MESSAGE ===== */
+p {
+    text-align: center;
+    font-weight: 500;
+}
